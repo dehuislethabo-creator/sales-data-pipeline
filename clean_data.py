@@ -1,22 +1,25 @@
 import pandas as pd
 
-# Load the raw sales data
-df = pd.read_csv("sales_data.csv")
+# Load the raw Kaggle sales dataset
+df = pd.read_csv("sales_data_sample.csv")
+
+# Standardise column names: lowercase and underscores
+df.columns = df.columns.str.strip().str.lower()
 
 # Remove duplicate rows
 df = df.drop_duplicates()
 
-# Remove rows with missing essential values
-df = df.dropna(subset=["product", "quantity", "price"])
+# Remove rows missing essential values
+df = df.dropna(subset=["productline", "quantityordered", "priceeach", "orderdate"])
 
-# Convert date column to datetime format
-df["order_date"] = pd.to_datetime(df["order_date"], errors="coerce")
+# Convert order date to datetime
+df["orderdate"] = pd.to_datetime(df["orderdate"], errors="coerce")
 
-# Remove invalid prices or quantities
-df = df[df["price"] > 0]
-df = df[df["quantity"] > 0]
+# Remove invalid quantities or prices
+df = df[df["quantityordered"] > 0]
+df = df[df["priceeach"] > 0]
 
-# Save the cleaned data
+# Save cleaned data
 df.to_csv("cleaned_sales_data.csv", index=False)
 
 print("Data cleaned successfully.")
