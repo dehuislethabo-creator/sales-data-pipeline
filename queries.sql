@@ -1,24 +1,32 @@
--- Total revenue by product
+-- Total sales by product line
 SELECT
-    product,
-    SUM(quantity * price) AS total_revenue
+    productline,
+    SUM(sales) AS total_sales
 FROM sales_data
-GROUP BY product
-ORDER BY total_revenue DESC;
+GROUP BY productline
+ORDER BY total_sales DESC;
 
 -- Monthly sales revenue
 SELECT
-    strftime('%Y-%m', order_date) AS sales_month,
-    SUM(quantity * price) AS total_revenue
+    strftime('%Y-%m', orderdate) AS sales_month,
+    SUM(sales) AS total_sales
 FROM sales_data
 GROUP BY sales_month
 ORDER BY sales_month;
 
--- Top customers by spend
+-- Top customers by sales
 SELECT
-    customer_name,
-    SUM(quantity * price) AS total_spent
+    customername,
+    SUM(sales) AS total_sales
 FROM sales_data
-GROUP BY customer_name
-ORDER BY total_spent DESC
+GROUP BY customername
+ORDER BY total_sales DESC
 LIMIT 10;
+
+-- Sales by order status
+SELECT
+    status,
+    SUM(sales) AS total_sales
+FROM sales_data
+GROUP BY status
+ORDER BY total_sales DESC;
