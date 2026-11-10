@@ -1,47 +1,55 @@
 # Sales Data Pipeline
 
-A beginner data-engineering project that cleans a sales dataset, loads it into a database, and answers business questions using SQL.
+A beginner data-engineering project that cleans a public Kaggle sales dataset and prepares it for SQL analysis.
 
 ## Objective
 
 To practise the basic data-engineering workflow:
 
-1. Get raw data
-2. Clean and prepare it
-3. Load it into a database
-4. Query it with SQL
+1. Load raw data
+2. Clean and validate it
+3. Prepare it for analysis
+4. Query it using SQL
 5. Document the process
+
+## Dataset
+
+The project uses the public **Sample Sales Data** dataset from Kaggle.
+
+It contains sales-order information, including order number, quantity ordered, unit price, sales amount, order date, product line, customer name and order status.
 
 ## Tools
 
 - Python
 - Pandas
 - SQL
-- SQLite or PostgreSQL
-- Git and GitHub
+- Git
+- GitHub
 
-## Steps
+## Pipeline
 
-1. Download a public sales CSV dataset.
-2. Clean the data using Python and Pandas.
-3. Load the cleaned data into a database.
-4. Write SQL queries to answer business questions.
-5. Document findings in this README.
+1. Load the raw Kaggle sales CSV.
+2. Standardise column names.
+3. Remove duplicate rows.
+4. Remove rows with missing essential values.
+5. Convert order dates to datetime format.
+6. Remove invalid quantities and prices.
+7. Save the cleaned dataset as `cleaned_sales_data.csv`.
+8. Use SQL to analyse sales by product, month, customer and order status.
 
 ## Business Questions
 
-- Which products generated the most revenue?
-- Which month had the highest sales?
-- Which customers purchased most often?
-- Are there missing or duplicated records?
+- Which product lines generate the most sales?
+- Which months have the highest sales?
+- Which customers spend the most?
+- How do order statuses affect sales?
 
 ## How to Run
 
 1. Install Python.
-2. Install the required packages.
-3. Run the cleaning script.
-4. Run the SQL queries.
+2. Install the required packages:
 
-## Status
+```bash
+pip install -r requirements.txt
 
-In progress.
+
